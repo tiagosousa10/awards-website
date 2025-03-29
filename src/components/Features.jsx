@@ -8,15 +8,19 @@ export const BentoTilt = ({ children, className = "" }) => {
    const handleMouseMove = (event) => {
      if (!itemRef.current) return;
  
+     // Get the position of the element
      const { left, top, width, height } =
        itemRef.current.getBoundingClientRect();
  
+      // Get the position of the mouse
      const relativeX = (event.clientX - left) / width;
      const relativeY = (event.clientY - top) / height;
  
+     // Calculate the tilt
      const tiltX = (relativeY - 0.5) * 5;
      const tiltY = (relativeX - 0.5) * -5;
  
+     // Apply the tilt
      const newTransform = `perspective(700px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(.95, .95, .95)`;
      setTransformStyle(newTransform);
    };
